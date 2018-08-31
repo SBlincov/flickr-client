@@ -189,7 +189,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Blintsov Sergey";
+				ORGANIZATIONNAME = "Sergey Blintsov";
 				TargetAttributes = {
 					E55A72612138416B0056B878 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -441,7 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sblincov.flickr-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -460,7 +460,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sblincov.flickr-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
