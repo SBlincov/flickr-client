@@ -15,6 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
     var titleOfFetchedPhoto = Array(repeating: "", count: 20)
+    var tagOfFetchedPhoto = Array(repeating: "", count: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         fetchPhotos(publicFeedDictionary)
         fetchTitles(publicFeedDictionary)
+        fetchTags(publicFeedDictionary)
         
+    }
+    
+    func fetchTags(_ publicFeedDictionary: [NSDictionary]) {
+        for i in 0...publicFeedDictionary.count-1{
+            tagOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["tags"])
+        }
     }
     
     func fetchTitles(_ publicFeedDictionary: [NSDictionary]) {
@@ -108,6 +116,11 @@ extension ViewController {
         
         cell.myImage.downloaded(from: urlOfFetchedPhoto[indexPath.item])
         cell.title.text = titleOfFetchedPhoto[indexPath.item]
+        if tagOfFetchedPhoto[indexPath.item] != "" {
+            cell.tagPhoto.text = tagOfFetchedPhoto[indexPath.item]
+        } else {
+            cell.tagPhoto.text = "No tags"
+        }
         return cell
     }
     
