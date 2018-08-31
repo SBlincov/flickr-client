@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var publicFeedDictionary: [NSDictionary] = []
+    var arrWithUrl = Array(repeating: "", count: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,25 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         getPublicFeed()
         while publicFeedDictionary == [] {
             continue
+        }
+        //print(fetchPhoto(publicFeedDictionary))
+        fetchPhoto(publicFeedDictionary)
+        print(arrWithUrl)
+        
+    }
+    
+    func stringFromAny(_ value:Any?) -> String {
+        if let nonNil = value, !(nonNil is NSNull) {
+            return String(describing: nonNil)
+        }
+        return ""
+    }
+    
+    func fetchPhoto(_ publicFeedDictionary: [NSDictionary]) {
+        for i in 0...19{
+            arrWithUrl[i] = stringFromAny(publicFeedDictionary[i]["media"])
+            arrWithUrl[i] = String(arrWithUrl[i].dropLast(4))
+            arrWithUrl[i] = String(arrWithUrl[i].dropFirst(11))
         }
     }
     
@@ -84,7 +104,7 @@ extension ViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        cell.myImage.downloaded(from: "https://humoraf.ru/wp-content/uploads/2018/03/good-morning-pictures-funny-funny-15.jpg")
+        cell.myImage.downloaded(from: arrWithUrl[indexPath.item])
         return cell
     }
 }
