@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var publicFeedDictionary: [NSDictionary] = []
-    var arrWithUrl = Array(repeating: "", count: 20)
+    var urlOfFetchedPhoto = Array(repeating: "", count: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,24 +20,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         while publicFeedDictionary == [] {
             continue
         }
-        //print(fetchPhoto(publicFeedDictionary))
-        fetchPhoto(publicFeedDictionary)
-        print(arrWithUrl)
+        fetchPhotos(publicFeedDictionary)
         
     }
     
-    func stringFromAny(_ value:Any?) -> String {
-        if let nonNil = value, !(nonNil is NSNull) {
-            return String(describing: nonNil)
-        }
-        return ""
-    }
-    
-    func fetchPhoto(_ publicFeedDictionary: [NSDictionary]) {
-        for i in 0...19{
-            arrWithUrl[i] = stringFromAny(publicFeedDictionary[i]["media"])
-            arrWithUrl[i] = String(arrWithUrl[i].dropLast(4))
-            arrWithUrl[i] = String(arrWithUrl[i].dropFirst(11))
+    func fetchPhotos(_ publicFeedDictionary: [NSDictionary]) {
+        for i in 0...publicFeedDictionary.count-1{
+            urlOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["media"])
+            urlOfFetchedPhoto[i] = String(urlOfFetchedPhoto[i].dropLast(4))
+            urlOfFetchedPhoto[i] = String(urlOfFetchedPhoto[i].dropFirst(11))
         }
     }
     
@@ -90,6 +81,7 @@ extension UIImageView {
             }
             }.resume()
     }
+    
     func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloaded(from: url, contentMode: mode)
@@ -104,8 +96,15 @@ extension ViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
-        cell.myImage.downloaded(from: arrWithUrl[indexPath.item])
+        cell.myImage.downloaded(from: urlOfFetchedPhoto[indexPath.item])
         return cell
+    }
+    
+    func stringFromAny(_ value:Any?) -> String {
+        if let nonNil = value, !(nonNil is NSNull) {
+            return String(describing: nonNil)
+        }
+        return ""
     }
 }
 
