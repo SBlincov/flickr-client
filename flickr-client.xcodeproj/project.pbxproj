@@ -15,6 +15,7 @@
 		E55A727B2138416C0056B878 /* flickr_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A727A2138416C0056B878 /* flickr_clientTests.swift */; };
 		E55A72862138416C0056B878 /* flickr_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A72852138416C0056B878 /* flickr_clientUITests.swift */; };
 		E55A72982139AC3D0056B878 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A72972139AC3D0056B878 /* CollectionViewCell.swift */; };
+		E55A729A2139E9910056B878 /* FullScreenPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A72992139E9910056B878 /* FullScreenPhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E55A72852138416C0056B878 /* flickr_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flickr_clientUITests.swift; sourceTree = "<group>"; };
 		E55A72872138416C0056B878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E55A72972139AC3D0056B878 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		E55A72992139E9910056B878 /* FullScreenPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				E55A72652138416B0056B878 /* AppDelegate.swift */,
 				E55A72672138416B0056B878 /* ViewController.swift */,
+				E55A72992139E9910056B878 /* FullScreenPhotoViewController.swift */,
 				E55A72692138416B0056B878 /* Main.storyboard */,
 				E55A72972139AC3D0056B878 /* CollectionViewCell.swift */,
 				E55A726C2138416C0056B878 /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 			files = (
 				E55A72682138416B0056B878 /* ViewController.swift in Sources */,
 				E55A72662138416B0056B878 /* AppDelegate.swift in Sources */,
+				E55A729A2139E9910056B878 /* FullScreenPhotoViewController.swift in Sources */,
 				E55A72982139AC3D0056B878 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

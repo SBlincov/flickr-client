@@ -113,10 +113,42 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Oip-9c-dz4"/>
+                    <connections>
+                        <segue destination="AwN-UZ-baC" kind="show" identifier="FullScreenPhoto" id="dS0-aq-brL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1112.8" y="-591.45427286356824"/>
+        </scene>
+        <!--Full Screen Photo View Controller-->
+        <scene sceneID="pz3-7Z-hCc">
+            <objects>
+                <viewController id="AwN-UZ-baC" customClass="FullScreenPhotoViewController" customModule="flickr_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c7t-zi-Ixv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uuz-5t-xxS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uuz-5t-xxS" firstAttribute="trailing" secondItem="lEj-6v-bRr" secondAttribute="trailing" id="B3S-aB-XZ3"/>
+                            <constraint firstItem="uuz-5t-xxS" firstAttribute="bottom" secondItem="lEj-6v-bRr" secondAttribute="bottom" id="IXp-Wh-XOM"/>
+                            <constraint firstItem="uuz-5t-xxS" firstAttribute="leading" secondItem="lEj-6v-bRr" secondAttribute="leading" id="c0K-oK-rEs"/>
+                            <constraint firstItem="uuz-5t-xxS" firstAttribute="top" secondItem="lEj-6v-bRr" secondAttribute="top" id="urG-cl-vvO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lEj-6v-bRr"/>
+                    </view>
+                    <connections>
+                        <outlet property="fullScreenPhoto" destination="uuz-5t-xxS" id="uKp-0G-4le"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vfD-aa-HcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848.8" y="-591.45427286356824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PVo-S3-QeR">

@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     
+    static var pushedPhoto: UIImageView? = nil
     
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
@@ -35,8 +36,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        
-        print("НИЧОСИ")
+        ViewController.pushedPhoto = tappedImage
+        performSegue(withIdentifier: "FullScreenPhoto", sender: nil)
     }
     
     func fetchDate(_ publicFeedDictionary: [NSDictionary]) {
