@@ -32,6 +32,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        print("НИЧОСИ")
+    }
+    
     func fetchDate(_ publicFeedDictionary: [NSDictionary]) {
         for i in 0...publicFeedDictionary.count-1{
             dateOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["date_taken"])
@@ -129,6 +136,9 @@ extension ViewController {
         cell.myImage.downloaded(from: urlOfFetchedPhoto[indexPath.item])
         cell.myImage.layer.borderWidth = 1.0
         cell.myImage.layer.borderColor = UIColor.gray.cgColor
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        cell.myImage.isUserInteractionEnabled = true
+        cell.myImage.addGestureRecognizer(tapGestureRecognizer)
         
         cell.title.text = titleOfFetchedPhoto[indexPath.item]
         
