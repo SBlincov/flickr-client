@@ -10,8 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    
+    
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
+    var titleOfFetchedPhoto = Array(repeating: "", count: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             continue
         }
         fetchPhotos(publicFeedDictionary)
+        fetchTitles(publicFeedDictionary)
         
+    }
+    
+    func fetchTitles(_ publicFeedDictionary: [NSDictionary]) {
+        for i in 0...publicFeedDictionary.count-1{
+            titleOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["title"])
+        }
     }
     
     func fetchPhotos(_ publicFeedDictionary: [NSDictionary]) {
@@ -97,6 +107,7 @@ extension ViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
         cell.myImage.downloaded(from: urlOfFetchedPhoto[indexPath.item])
+        cell.title.text = titleOfFetchedPhoto[indexPath.item]
         return cell
     }
     
