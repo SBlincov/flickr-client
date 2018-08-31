@@ -16,6 +16,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
     var titleOfFetchedPhoto = Array(repeating: "", count: 20)
     var tagOfFetchedPhoto = Array(repeating: "", count: 20)
+    var dateOfFetchedPhoto = Array(repeating: "", count: 20)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         fetchPhotos(publicFeedDictionary)
         fetchTitles(publicFeedDictionary)
         fetchTags(publicFeedDictionary)
+        fetchDate(publicFeedDictionary)
         
+    }
+    
+    func fetchDate(_ publicFeedDictionary: [NSDictionary]) {
+        for i in 0...publicFeedDictionary.count-1{
+            dateOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["date_taken"])
+            dateOfFetchedPhoto[i] = String(dateOfFetchedPhoto[i].dropLast(15))
+        }
     }
     
     func fetchTags(_ publicFeedDictionary: [NSDictionary]) {
@@ -114,13 +123,23 @@ extension ViewController {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         
+        cell.layer.borderWidth = 1.0
+        cell.layer.borderColor = UIColor.gray.cgColor
+        
         cell.myImage.downloaded(from: urlOfFetchedPhoto[indexPath.item])
+        cell.myImage.layer.borderWidth = 1.0
+        cell.myImage.layer.borderColor = UIColor.gray.cgColor
+        
         cell.title.text = titleOfFetchedPhoto[indexPath.item]
+        
         if tagOfFetchedPhoto[indexPath.item] != "" {
             cell.tagPhoto.text = tagOfFetchedPhoto[indexPath.item]
         } else {
             cell.tagPhoto.text = "No tags"
         }
+        
+        cell.datePhoto.text = dateOfFetchedPhoto[indexPath.item]
+        
         return cell
     }
     
