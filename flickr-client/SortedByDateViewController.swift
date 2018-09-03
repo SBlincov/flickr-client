@@ -12,6 +12,7 @@ class SortedByDateViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false)
         // Do any additional setup after loading the view.
     }
 
@@ -33,11 +34,11 @@ class SortedByDateViewController: ViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        var indArr1 = sortByDate(dateOfFetchedPhoto, urlOfFetchedPhoto)
-        //print(titleOfFetchedPhoto)
-        cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr1[indexPath.item]])
+        var indArr = sortByDate(dateOfFetchedPhoto)
+
+        cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr[indexPath.item]])
         
-        cell.title.text = titleOfFetchedPhoto[indArr1[indexPath.item]]
+        cell.title.text = titleOfFetchedPhoto[indArr[indexPath.item]]
         
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -50,12 +51,12 @@ class SortedByDateViewController: ViewController {
         
         
         if tagOfFetchedPhoto[indexPath.item] != "" {
-            cell.tagPhoto.text = tagOfFetchedPhoto[indArr1[indexPath.item]]
+            cell.tagPhoto.text = tagOfFetchedPhoto[indArr[indexPath.item]]
         } else {
             cell.tagPhoto.text = "No tags"
         }
         
-        cell.datePhoto.text = dateOfFetchedPhoto[indArr1[indexPath.item]]
+        cell.datePhoto.text = dateOfFetchedPhoto[indArr[indexPath.item]]
         
         return cell
     }

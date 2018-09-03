@@ -12,6 +12,7 @@ class SortedByNameViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: false)
         // Do any additional setup after loading the view.
     }
     
@@ -33,7 +34,7 @@ class SortedByNameViewController: ViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-            var indArr = sortByName(titleOfFetchedPhoto, urlOfFetchedPhoto)
+            var indArr = sortByName(titleOfFetchedPhoto)
             //print(titleOfFetchedPhoto)
             cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr[indexPath.item]])
             

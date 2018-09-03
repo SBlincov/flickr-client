@@ -107,14 +107,14 @@
                                 <state key="normal" title="Sort by name"/>
                                 <connections>
                                     <action selector="sortByNameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="McR-UT-fF5"/>
-                                    <segue destination="jsM-iY-DgM" kind="show" id="5m9-p9-978"/>
+                                    <segue destination="jsM-iY-DgM" kind="show" id="sUV-ra-WRH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-Kb-PSv">
                                 <rect key="frame" x="248" y="76" width="85" height="30"/>
                                 <state key="normal" title="Sort by date"/>
                                 <connections>
-                                    <segue destination="bYU-Z8-K4W" kind="show" id="x6u-Mg-wW0"/>
+                                    <segue destination="bYU-Z8-K4W" kind="show" id="k4F-20-atT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -161,13 +161,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lEj-6v-bRr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zHm-Sp-hhl"/>
                     <connections>
                         <outlet property="fullScreenPhoto" destination="uuz-5t-xxS" id="uKp-0G-4le"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfD-aa-HcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848.8" y="-591.45427286356824"/>
+            <point key="canvasLocation" x="3298" y="-611"/>
         </scene>
         <!--Sorted By Name View Controller-->
         <scene sceneID="UvI-E7-O5Y">
@@ -194,10 +195,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bET-YW-4OZ">
-                                                    <rect key="frame" x="-1" y="-1" width="180" height="181"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data of photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl2-vt-4w4">
                                                     <rect key="frame" x="255" y="100" width="107" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -245,6 +242,10 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bET-YW-4OZ">
+                                                    <rect key="frame" x="0.0" y="-1" width="180" height="181"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <size key="customSize" width="375" height="180"/>
@@ -268,6 +269,13 @@
                                     <action selector="sortByNameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7x3-9A-y0t"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDs-pK-4sH">
+                                <rect key="frame" x="248" y="76" width="85" height="30"/>
+                                <state key="normal" title="Sort by date"/>
+                                <connections>
+                                    <segue destination="bYU-Z8-K4W" kind="show" id="gHZ-tB-ywL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -276,6 +284,8 @@
                             <constraint firstItem="zIl-NG-FjP" firstAttribute="bottom" secondItem="XBx-Af-rCQ" secondAttribute="bottom" id="DQ8-vc-mok"/>
                             <constraint firstItem="JWl-wu-y3u" firstAttribute="top" secondItem="XBx-Af-rCQ" secondAttribute="top" constant="12" id="ToE-o3-jzk"/>
                             <constraint firstItem="zIl-NG-FjP" firstAttribute="top" secondItem="XBx-Af-rCQ" secondAttribute="top" constant="50" id="cnL-a5-2Hh"/>
+                            <constraint firstItem="GDs-pK-4sH" firstAttribute="top" secondItem="XBx-Af-rCQ" secondAttribute="top" constant="12" id="d6W-3S-0Rh"/>
+                            <constraint firstItem="XBx-Af-rCQ" firstAttribute="trailing" secondItem="GDs-pK-4sH" secondAttribute="trailing" constant="42" id="gzc-aX-lxN"/>
                             <constraint firstItem="zIl-NG-FjP" firstAttribute="leading" secondItem="XBx-Af-rCQ" secondAttribute="leading" id="z4c-C8-rlt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XBx-Af-rCQ"/>
@@ -286,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecx-B4-7KK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849" y="125"/>
+            <point key="canvasLocation" x="2034" y="-1401"/>
         </scene>
         <!--Sorted By Date View Controller-->
         <scene sceneID="CLC-iJ-rgn">
@@ -297,14 +307,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caN-1C-j2x">
-                                <rect key="frame" x="42" y="76" width="92" height="30"/>
+                                <rect key="frame" x="42" y="32" width="92" height="30"/>
                                 <state key="normal" title="Sort by name"/>
                                 <connections>
                                     <action selector="sortByNameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p8N-yd-rlF"/>
+                                    <segue destination="jsM-iY-DgM" kind="show" id="5Qr-Tx-Sx1"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Zl-3w-A5R">
-                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SrM-wJ-CL1">
                                     <size key="itemSize" width="373" height="180"/>
@@ -387,25 +398,31 @@
                                     <outlet property="delegate" destination="bYU-Z8-K4W" id="G75-Z4-HeB"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6J6-uc-18e">
+                                <rect key="frame" x="248" y="32" width="85" height="30"/>
+                                <state key="normal" title="Sort by date"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1Zl-3w-A5R" firstAttribute="top" secondItem="9H5-7N-VEa" secondAttribute="top" constant="50" id="5LQ-oQ-JVi"/>
                             <constraint firstItem="caN-1C-j2x" firstAttribute="leading" secondItem="9H5-7N-VEa" secondAttribute="leading" constant="42" id="7Aw-y1-PxO"/>
+                            <constraint firstItem="6J6-uc-18e" firstAttribute="top" secondItem="9H5-7N-VEa" secondAttribute="top" constant="12" id="8WL-bC-8wo"/>
                             <constraint firstItem="caN-1C-j2x" firstAttribute="top" secondItem="9H5-7N-VEa" secondAttribute="top" constant="12" id="90r-YY-jd4"/>
                             <constraint firstItem="1Zl-3w-A5R" firstAttribute="leading" secondItem="9H5-7N-VEa" secondAttribute="leading" id="EBJ-7f-yI2"/>
                             <constraint firstItem="9H5-7N-VEa" firstAttribute="bottom" secondItem="1Zl-3w-A5R" secondAttribute="bottom" id="hNv-Jo-esd"/>
+                            <constraint firstItem="9H5-7N-VEa" firstAttribute="trailing" secondItem="6J6-uc-18e" secondAttribute="trailing" constant="42" id="oYJ-mB-Elm"/>
                             <constraint firstItem="1Zl-3w-A5R" firstAttribute="trailing" secondItem="9H5-7N-VEa" secondAttribute="trailing" id="w1E-mm-oeI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9H5-7N-VEa"/>
                     </view>
                     <connections>
-                        <segue destination="AwN-UZ-baC" kind="show" identifier="FullScreenPhoto" id="g4H-DR-vBN"/>
+                        <segue destination="AwN-UZ-baC" kind="show" identifier="FullScreenPhoto" id="ZYV-eN-IiO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeB-sT-KrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1847" y="830"/>
+            <point key="canvasLocation" x="2033" y="241"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PVo-S3-QeR">
@@ -427,6 +444,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g4H-DR-vBN"/>
+        <segue reference="gHZ-tB-ywL"/>
+        <segue reference="5Qr-Tx-Sx1"/>
+        <segue reference="ZYV-eN-IiO"/>
     </inferredMetricsTieBreakers>
 </document>

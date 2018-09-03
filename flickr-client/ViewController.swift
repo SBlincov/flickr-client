@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     @IBAction func sortByNameButton(_ sender: Any) {
-        print("Button pressed")
 //        isPushedSortByName = true
 //        getPublicFeed()
 //        fetchPhotos(publicFeedDictionary)
@@ -45,16 +44,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
-    func sortByName(_ titleOfFetchedPhoto: [String], _ urlOfFetchedPhoto: [String]) -> [Int] {
-        var arr: [String] = []
-        arr = titleOfFetchedPhoto
-        arr.sort{$0<$1}
-        //print(arr)
-        var indArr = Array(repeating: 0, count: arr.count)
-        for a in 0...arr.count-1{
-            for b in 0...titleOfFetchedPhoto.count-1{
-                if arr[a] == titleOfFetchedPhoto[b]{
+    func sortByName(_ titleOfFetchedPhoto: [String]) -> [Int] {
+        var sortedTitles: [String] = []
+        sortedTitles = titleOfFetchedPhoto
+        sortedTitles.sort{$0<$1}
+        
+        var isHave = Array(repeating: false, count: dateOfFetchedPhoto.count)
+        var indArr = Array(repeating: 0, count: sortedTitles.count)
+        
+        for a in 0...titleOfFetchedPhoto.count-1{
+            for b in 0...sortedTitles.count-1{
+                if isHave[b] == true{
+                    continue
+                }
+                if sortedTitles[a] == titleOfFetchedPhoto[b]{
                     indArr[a] = b
+                    isHave[b] = true
                     break
                 }
             }
@@ -62,16 +67,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return indArr
     }
     
-    func sortByDate(_ dateOfFetchedPhoto: [String], _ urlOfFetchedPhoto: [String]) -> [Int] {
-        var arr: [String] = []
-        arr = dateOfFetchedPhoto
-        arr.sort{$0>$1}
-        //print(arr)
-        var indArr = Array(repeating: 0, count: arr.count)
-        for a in 0...arr.count-1{
-            for b in 0...dateOfFetchedPhoto.count-1{
-                if arr[a] == dateOfFetchedPhoto[b]{
+    func sortByDate(_ dateOfFetchedPhoto: [String]) -> [Int] {
+        
+        var sortedDates: [String] = []
+        sortedDates = dateOfFetchedPhoto
+        sortedDates.sort{$0>$1}
+        var isHave = Array(repeating: false, count: dateOfFetchedPhoto.count)
+        var indArr = Array(repeating: 0, count: sortedDates.count)
+
+        for a in 0...dateOfFetchedPhoto.count-1{
+            for b in 0...sortedDates.count-1{
+                if isHave[b] == true{
+                    continue
+                }
+                if (sortedDates[a] == dateOfFetchedPhoto[b]) {
                     indArr[a] = b
+                    isHave[b] = true
                     break
                 }
             }
