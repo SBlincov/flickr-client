@@ -9,8 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    @IBAction func sortByNameButton(_ sender: Any) {
+        print("Button pressed")
+//        isPushedSortByName = true
+//        getPublicFeed()
+//        fetchPhotos(publicFeedDictionary)
+//        fetchTitles(publicFeedDictionary)
+//        fetchTags(publicFeedDictionary)
+//        fetchDate(publicFeedDictionary)
+//        lol?.collectionView?.reloadData()
+//        lol?.collectionView?.performBatchUpdates(nil, completion: nil)
+    }
     
-    
+    var lol: UICollectionViewLayout? = nil
+    var isPushedSortByName = false
     static var pushedPhoto: UIImageView? = nil
     
     var publicFeedDictionary: [NSDictionary] = []
@@ -31,6 +43,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         fetchTags(publicFeedDictionary)
         fetchDate(publicFeedDictionary)
         
+    }
+    
+    func sortByName(_ titleOfFetchedPhoto: [String], _ urlOfFetchedPhoto: [String]) -> [Int] {
+        var arr: [String] = []
+        arr = titleOfFetchedPhoto
+        arr.sort{$0<$1}
+        //print(arr)
+        var indArr = Array(repeating: 0, count: arr.count)
+        for a in 0...arr.count-1{
+            for b in 0...titleOfFetchedPhoto.count-1{
+                if arr[a] == titleOfFetchedPhoto[b]{
+                    indArr[a] = b
+                    break
+                }
+            }
+        }
+        return indArr
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -130,7 +159,7 @@ extension ViewController {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-        
+       
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.gray.cgColor
         
