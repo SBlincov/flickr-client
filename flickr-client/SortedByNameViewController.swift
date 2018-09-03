@@ -9,11 +9,17 @@
 import UIKit
 
 class SortedByNameViewController: ViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    @objc override func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        ViewController.pushedPhoto = tappedImage
+        performSegue(withIdentifier: "FullScreenPhoto", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

@@ -62,6 +62,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return indArr
     }
     
+    func sortByDate(_ dateOfFetchedPhoto: [String], _ urlOfFetchedPhoto: [String]) -> [Int] {
+        var arr: [String] = []
+        arr = dateOfFetchedPhoto
+        arr.sort{$0>$1}
+        //print(arr)
+        var indArr = Array(repeating: 0, count: arr.count)
+        for a in 0...arr.count-1{
+            for b in 0...dateOfFetchedPhoto.count-1{
+                if arr[a] == dateOfFetchedPhoto[b]{
+                    indArr[a] = b
+                    break
+                }
+            }
+        }
+        return indArr
+    }
+    
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
