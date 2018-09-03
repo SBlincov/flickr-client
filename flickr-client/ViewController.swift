@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     @IBAction func sortByNameButton(_ sender: Any) {
 //        isPushedSortByName = true
 //        getPublicFeed()
@@ -20,9 +20,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 //        lol?.collectionView?.performBatchUpdates(nil, completion: nil)
     }
     
-    var lol: UICollectionViewLayout? = nil
-    var isPushedSortByName = false
     static var pushedPhoto: UIImageView? = nil
+    @IBOutlet weak var searchByTagField: UITextField!
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        if textField.text != nil {
+        getPublicFeed(tag: textField.text!)
+        while publicFeedDictionary == [] {
+            continue
+        }
+        fetchPhotos(publicFeedDictionary)
+        fetchTitles(publicFeedDictionary)
+        fetchTags(publicFeedDictionary)
+        fetchDate(publicFeedDictionary)
+        return true
+        }
+        return true
+    }
     
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
@@ -32,6 +47,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchByTagField.delegate = self
+        
         
         getPublicFeed()
         while publicFeedDictionary == [] {
@@ -244,5 +261,26 @@ extension ViewController {
         }
         return ""
     }
+    
+    func textField(textField: UITextField,
+                   shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String)
+        -> Bool
+    {
+        // We ignore any change that doesn't add characters to the text field.
+        // These changes are things like character deletions and cuts, as well
+        // as moving the insertion point.
+        //
+        // We still return true to allow the change to take place.
+        if string.characters.count == 0 {
+            return true
+        }
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
 }
 
