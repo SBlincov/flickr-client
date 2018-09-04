@@ -15,6 +15,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     static var pushedPhoto: UIImageView? = nil
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var fullScreenImage: UIImageView!
+    @IBOutlet weak var returnBackButton: UIButton!
+    @IBOutlet weak var sortByDateButton: UIButton!
+    @IBOutlet weak var sortByNameButton: UIButton!
     
     @IBAction func pushedSortByNameButton(_ sender: Any) {
         isPushedSortByName = true
@@ -76,6 +81,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fullScreenImage.isHidden = true
+        returnBackButton.isHidden = true
+        
+        initializeTextField()
+        
         getPublicFeed()
         while publicFeedDictionary == [] {
             continue
@@ -86,6 +96,46 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         fetchDate(publicFeedDictionary)
         
     }
+    
+    func initializeTextField() {
+        textField.delegate = self
+        textField.keyboardType = UIKeyboardType.default
+    }
+    
+    @IBAction func userTappedBackground(sender: AnyObject) {
+        view.endEditing(true)
+    }
+    
+    func textField(textField: UITextField,
+                   shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String)
+        -> Bool {
+        // We ignore any change that doesn't add characters to the text field.
+        // These changes are things like character deletions and cuts, as well
+        // as moving the insertion point.
+        //
+        // We still return true to allow the change to take place.
+        if string.characters.count == 0 {
+            return true
+        }
+        
+        // Check to see if the text field's contents still fit the constraints
+        // with the new content added to it.
+        // If the contents still fit the constraints, allow the change
+        // by returning true; otherwise disallow the change by returning false.
+        let currentText = textField.text ?? ""
+        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        return true
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+// END TEXTFIELD
     
     func sortByName(_ titleOfFetchedPhoto: [String]) -> [Int] {
         var sortedTitles: [String] = []
@@ -133,11 +183,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return indArr
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
+    @IBAction func pressedReturnBackButton(_ sender: Any) {
+        collectionView.isHidden = false
+        sortByDateButton.isHidden = false
+        sortByNameButton.isHidden = false
+        textField.isHidden = false
+        
+        fullScreenImage.isHidden = true
+        returnBackButton.isHidden = true
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         ViewController.pushedPhoto = tappedImage
-        performSegue(withIdentifier: "FullScreenPhoto", sender: nil)
+        //performSegue(withIdentifier: "FullScreenPhoto", sender: nil)
+        fullScreenImage.image = ViewController.pushedPhoto?.image
+        
+        collectionView.isHidden = true
+        sortByDateButton.isHidden = true
+        sortByNameButton.isHidden = true
+        textField.isHidden = true
+        
+        fullScreenImage.isHidden = false
+        returnBackButton.isHidden = false
+        
     }
     
     func fetchDate(_ publicFeedDictionary: [NSDictionary]) {
