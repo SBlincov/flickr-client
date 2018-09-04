@@ -42,15 +42,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         if textField.text != nil {
-        getPublicFeed(tag: textField.text!)
-        while publicFeedDictionary == [] {
-            continue
-        }
-        fetchPhotos(publicFeedDictionary)
-        fetchTitles(publicFeedDictionary)
-        fetchTags(publicFeedDictionary)
-        fetchDate(publicFeedDictionary)
-        return true
+            publicFeedDictionary = []
+            getPublicFeed(tag: textField.text!)
+            while publicFeedDictionary == [] {
+                continue
+            }
+            fetchPhotos(publicFeedDictionary)
+            fetchTitles(publicFeedDictionary)
+            fetchTags(publicFeedDictionary)
+            fetchDate(publicFeedDictionary)
+            collectionView?.reloadData()
+            return true
         }
         return true
     }
@@ -299,4 +301,3 @@ extension ViewController {
     }
     
 }
-
