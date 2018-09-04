@@ -10,10 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
-    var isPushedSortByName = false
-    var isPushedSortByDate = false
-    
-    static var pushedPhoto: UIImageView? = nil
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var fullScreenImage: UIImageView!
@@ -21,70 +17,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var sortByDateButton: UIButton!
     @IBOutlet weak var sortByNameButton: UIButton!
     
-    @IBAction func pushedSortByNameButton(_ sender: Any) {
-        isPushedSortByName = true
-        if(isPushedSortByDate == true){
-            isPushedSortByDate = false
-        }
-        collectionView?.reloadData()
-    }
-    
-    @IBAction func pushedSortByDateButton(_ sender: Any) {
-        isPushedSortByDate = true
-        if(isPushedSortByName == true){
-            isPushedSortByName = false
-        }
-        collectionView?.reloadData()
-    }
-    
-    
-    
-    @IBAction func searchByTagButton(_ sender: Any) {
-        publicFeedDictionary = []
-        getPublicFeed(tag: "lol")
-        while publicFeedDictionary == [] {
-            continue
-        }
-        //print(publicFeedDictionary)
-        fetchPhotos(publicFeedDictionary)
-        fetchTitles(publicFeedDictionary)
-        fetchTags(publicFeedDictionary)
-        fetchDate(publicFeedDictionary)
-        print(publicFeedDictionary)
-        collectionView?.reloadData()
-    }
-    
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        self.view.endEditing(true)
-//        if textField.text != nil {
-//            publicFeedDictionary = []
-//            getPublicFeed(tag: textField.text!)
-//            while publicFeedDictionary == [] {
-//                continue
-//            }
-//            fetchPhotos(publicFeedDictionary)
-//            fetchTitles(publicFeedDictionary)
-//            fetchTags(publicFeedDictionary)
-//            fetchDate(publicFeedDictionary)
-//            collectionView?.reloadData()
-//            return true
-//        }
-//        return true
-//    }
-    
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
     var titleOfFetchedPhoto = Array(repeating: "", count: 20)
     var tagOfFetchedPhoto = Array(repeating: "", count: 20)
     var dateOfFetchedPhoto = Array(repeating: "", count: 20)
     
+    var isPushedSortByName = false
+    var isPushedSortByDate = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeTextField()
         
         fullScreenImage.isHidden = true
         returnBackButton.isHidden = true
-        
-        initializeTextField()
         
         getPublicFeed()
         while publicFeedDictionary == [] {
@@ -94,29 +41,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         fetchTitles(publicFeedDictionary)
         fetchTags(publicFeedDictionary)
         fetchDate(publicFeedDictionary)
-        
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    @IBAction func pushedSortByNameButton(_ sender: Any) {
+        isPushedSortByName = true
+        if(isPushedSortByDate == true) {
+            isPushedSortByDate = false
+        }
+        collectionView?.reloadData()
+    }
+    
+    @IBAction func pushedSortByDateButton(_ sender: Any) {
+        isPushedSortByDate = true
+        if(isPushedSortByName == true) {
+            isPushedSortByName = false
+        }
+        collectionView?.reloadData()
     }
     
     func initializeTextField() {
         textField.delegate = self
         textField.keyboardType = UIKeyboardType.default
-    }
-    
-    
-    @IBAction func userTappedBackground(sender: AnyObject) {
-        view.endEditing(true)
-    }
-    
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String)
-        -> Bool {
-        if string.count == 0 {
-            return true
-        }
-        
-        return true
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -141,8 +90,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         view.endEditing(true)
     }
     
-// END TEXTFIELD
-    
     func sortByName(_ titleOfFetchedPhoto: [String]) -> [Int] {
         var sortedTitles: [String] = []
         sortedTitles = titleOfFetchedPhoto
@@ -151,12 +98,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         var isHave = Array(repeating: false, count: dateOfFetchedPhoto.count)
         var indArr = Array(repeating: 0, count: sortedTitles.count)
         
-        for a in 0...titleOfFetchedPhoto.count-1{
-            for b in 0...sortedTitles.count-1{
-                if isHave[b] == true{
+        for a in 0...titleOfFetchedPhoto.count-1 {
+            for b in 0...sortedTitles.count-1 {
+                if isHave[b] == true {
                     continue
                 }
-                if sortedTitles[a] == titleOfFetchedPhoto[b]{
+                if sortedTitles[a] == titleOfFetchedPhoto[b] {
                     indArr[a] = b
                     isHave[b] = true
                     break
@@ -167,16 +114,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func sortByDate(_ dateOfFetchedPhoto: [String]) -> [Int] {
-        
         var sortedDates: [String] = []
         sortedDates = dateOfFetchedPhoto
         sortedDates.sort{$0>$1}
+        
         var isHave = Array(repeating: false, count: dateOfFetchedPhoto.count)
         var indArr = Array(repeating: 0, count: sortedDates.count)
 
-        for a in 0...dateOfFetchedPhoto.count-1{
-            for b in 0...sortedDates.count-1{
-                if isHave[b] == true{
+        for a in 0...dateOfFetchedPhoto.count-1 {
+            for b in 0...sortedDates.count-1 {
+                if isHave[b] == true {
                     continue
                 }
                 if (sortedDates[a] == dateOfFetchedPhoto[b]) {
@@ -201,9 +148,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        ViewController.pushedPhoto = tappedImage
-        //performSegue(withIdentifier: "FullScreenPhoto", sender: nil)
-        fullScreenImage.image = ViewController.pushedPhoto?.image
+        fullScreenImage.image = tappedImage.image
         
         collectionView.isHidden = true
         sortByDateButton.isHidden = true
@@ -212,30 +157,29 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         fullScreenImage.isHidden = false
         returnBackButton.isHidden = false
-        
     }
     
     func fetchDate(_ publicFeedDictionary: [NSDictionary]) {
-        for i in 0...publicFeedDictionary.count-1{
+        for i in 0...publicFeedDictionary.count-1 {
             dateOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["date_taken"])
             dateOfFetchedPhoto[i] = String(dateOfFetchedPhoto[i].dropLast(15))
         }
     }
     
     func fetchTags(_ publicFeedDictionary: [NSDictionary]) {
-        for i in 0...publicFeedDictionary.count-1{
+        for i in 0...publicFeedDictionary.count-1 {
             tagOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["tags"])
         }
     }
     
     func fetchTitles(_ publicFeedDictionary: [NSDictionary]) {
-        for i in 0...publicFeedDictionary.count-1{
+        for i in 0...publicFeedDictionary.count-1 {
             titleOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["title"])
         }
     }
     
     func fetchPhotos(_ publicFeedDictionary: [NSDictionary]) {
-        for i in 0...publicFeedDictionary.count-1{
+        for i in 0...publicFeedDictionary.count-1 {
             urlOfFetchedPhoto[i] = stringFromAny(publicFeedDictionary[i]["media"])
             urlOfFetchedPhoto[i] = String(urlOfFetchedPhoto[i].dropLast(4))
             urlOfFetchedPhoto[i] = String(urlOfFetchedPhoto[i].dropFirst(11))
@@ -261,7 +205,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             guard let dict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? NSDictionary,
                 let items = dict["items"] as? [NSDictionary]
-                else { return }
+            else { return }
             
             self.publicFeedDictionary = items
         }
@@ -288,7 +232,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             guard let dict = (try? JSONSerialization.jsonObject(with: data, options: [])) as? NSDictionary,
                 let items = dict["items"] as? [NSDictionary]
-                else { return }
+            else { return }
             
             self.publicFeedDictionary = items
         }
@@ -296,13 +240,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         task.resume()
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
 }
 
+//Extension for downloading image via url
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         contentMode = mode
@@ -316,7 +256,7 @@ extension UIImageView {
             DispatchQueue.main.async() {
                 self.image = image
             }
-            }.resume()
+        }.resume()
     }
     
     func downloaded(from link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
@@ -326,6 +266,12 @@ extension UIImageView {
 }
 
 extension ViewController {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.count == 0 {
+            return true
+        }
+        return true
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return publicFeedDictionary.count
@@ -364,7 +310,6 @@ extension ViewController {
         
         if isPushedSortByName == true {
             var indArr = sortByName(titleOfFetchedPhoto)
-            //print(titleOfFetchedPhoto)
             cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr[indexPath.item]])
             
             cell.title.text = titleOfFetchedPhoto[indArr[indexPath.item]]
@@ -390,7 +335,6 @@ extension ViewController {
             return cell
         }
         
-        
     
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.gray.cgColor
@@ -415,6 +359,7 @@ extension ViewController {
         return cell
     }
     
+    // Convert Any type to String
     func stringFromAny(_ value:Any?) -> String {
         if let nonNil = value, !(nonNil is NSNull) {
             return String(describing: nonNil)
