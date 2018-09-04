@@ -9,20 +9,33 @@
 import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
-    @IBAction func sortByNameButton(_ sender: Any) {
-//        isPushedSortByName = true
-//        getPublicFeed()
-//        fetchPhotos(publicFeedDictionary)
-//        fetchTitles(publicFeedDictionary)
-//        fetchTags(publicFeedDictionary)
-//        fetchDate(publicFeedDictionary)
-//        lol?.collectionView?.reloadData()
-//        lol?.collectionView?.performBatchUpdates(nil, completion: nil)
-    }
+    
+    var counter = 0
+    
+    var isPushedSortByName = false
+    var isPushedSortByDate = false
     
     static var pushedPhoto: UIImageView? = nil
     @IBOutlet weak var searchByTagField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBAction func pushedSortByNameButton(_ sender: Any) {
+        isPushedSortByName = true
+        if(isPushedSortByDate == true){
+            isPushedSortByDate = false
+        }
+        collectionView?.reloadData()
+    }
+    
+    @IBAction func pushedSortByDateButton(_ sender: Any) {
+        isPushedSortByDate = true
+        if(isPushedSortByName == true){
+            isPushedSortByName = false
+        }
+        collectionView?.reloadData()
+    }
+    
+    
     
     @IBAction func searchByTagButton(_ sender: Any) {
         publicFeedDictionary = []
@@ -243,13 +256,72 @@ extension UIImageView {
 }
 
 extension ViewController {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return publicFeedDictionary.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-       
+        
+        if isPushedSortByDate == true {
+            var indArr = sortByDate(dateOfFetchedPhoto)
+            
+            cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr[indexPath.item]])
+            
+            cell.title.text = titleOfFetchedPhoto[indArr[indexPath.item]]
+            
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = UIColor.gray.cgColor
+            
+            cell.myImage.layer.borderWidth = 1.0
+            cell.myImage.layer.borderColor = UIColor.gray.cgColor
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            cell.myImage.isUserInteractionEnabled = true
+            cell.myImage.addGestureRecognizer(tapGestureRecognizer)
+            
+            
+            if tagOfFetchedPhoto[indexPath.item] != "" {
+                cell.tagPhoto.text = tagOfFetchedPhoto[indArr[indexPath.item]]
+            } else {
+                cell.tagPhoto.text = "No tags"
+            }
+            
+            cell.datePhoto.text = dateOfFetchedPhoto[indArr[indexPath.item]]
+            isPushedSortByName = false
+            return cell
+        }
+        
+        if isPushedSortByName == true {
+            var indArr = sortByName(titleOfFetchedPhoto)
+            //print(titleOfFetchedPhoto)
+            cell.myImage.downloaded(from: urlOfFetchedPhoto[indArr[indexPath.item]])
+            
+            cell.title.text = titleOfFetchedPhoto[indArr[indexPath.item]]
+            
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = UIColor.gray.cgColor
+            
+            cell.myImage.layer.borderWidth = 1.0
+            cell.myImage.layer.borderColor = UIColor.gray.cgColor
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            cell.myImage.isUserInteractionEnabled = true
+            cell.myImage.addGestureRecognizer(tapGestureRecognizer)
+            
+            
+            if tagOfFetchedPhoto[indexPath.item] != "" {
+                cell.tagPhoto.text = tagOfFetchedPhoto[indArr[indexPath.item]]
+            } else {
+                cell.tagPhoto.text = "No tags"
+            }
+            
+            cell.datePhoto.text = dateOfFetchedPhoto[indArr[indexPath.item]]
+            isPushedSortByDate = false
+            return cell
+        }
+        
+        
+    
         cell.layer.borderWidth = 1.0
         cell.layer.borderColor = UIColor.gray.cgColor
         
@@ -283,13 +355,7 @@ extension ViewController {
     func textField(textField: UITextField,
                    shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String)
-        -> Bool
-    {
-        // We ignore any change that doesn't add characters to the text field.
-        // These changes are things like character deletions and cuts, as well
-        // as moving the insertion point.
-        //
-        // We still return true to allow the change to take place.
+        -> Bool {
         if string.characters.count == 0 {
             return true
         }
