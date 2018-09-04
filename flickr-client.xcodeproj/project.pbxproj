@@ -14,6 +14,7 @@
 		E55A72702138416C0056B878 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E55A726E2138416C0056B878 /* LaunchScreen.storyboard */; };
 		E55A727B2138416C0056B878 /* flickr_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A727A2138416C0056B878 /* flickr_clientTests.swift */; };
 		E55A72862138416C0056B878 /* flickr_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A72852138416C0056B878 /* flickr_clientUITests.swift */; };
+		E55A72982139AC3D0056B878 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A72972139AC3D0056B878 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		E55A72812138416C0056B878 /* flickr-clientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "flickr-clientUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55A72852138416C0056B878 /* flickr_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flickr_clientUITests.swift; sourceTree = "<group>"; };
 		E55A72872138416C0056B878 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E55A72972139AC3D0056B878 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				E55A72652138416B0056B878 /* AppDelegate.swift */,
 				E55A72672138416B0056B878 /* ViewController.swift */,
 				E55A72692138416B0056B878 /* Main.storyboard */,
+				E55A72972139AC3D0056B878 /* CollectionViewCell.swift */,
 				E55A726C2138416C0056B878 /* Assets.xcassets */,
 				E55A726E2138416C0056B878 /* LaunchScreen.storyboard */,
 				E55A72712138416C0056B878 /* Info.plist */,
@@ -189,7 +192,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Blintsov Sergey";
+				ORGANIZATIONNAME = "Sergey Blintsov";
 				TargetAttributes = {
 					E55A72612138416B0056B878 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -258,6 +261,7 @@
 			files = (
 				E55A72682138416B0056B878 /* ViewController.swift in Sources */,
 				E55A72662138416B0056B878 /* AppDelegate.swift in Sources */,
+				E55A72982139AC3D0056B878 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +445,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sblincov.flickr-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -460,7 +464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sblincov.flickr-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
