@@ -170,6 +170,7 @@
                             <constraint firstItem="BTN-mr-580" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="hCu-oR-W4Q"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kYc-e6-xGN"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pz5-6Q-GPx"/>
+                            <constraint firstItem="uX2-Kb-PSv" firstAttribute="leading" secondItem="BTN-mr-580" secondAttribute="trailing" constant="94" id="qLd-xY-nAk"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="yxv-En-BcF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
