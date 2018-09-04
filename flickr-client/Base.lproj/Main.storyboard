@@ -116,12 +116,6 @@
                                     <action selector="pushedSortByDateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chf-nN-Exp"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by tag" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dm7-ud-DZp">
-                                <rect key="frame" x="125" y="617" width="125" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-1u-PuZ">
                                 <rect key="frame" x="188" y="510" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -138,11 +132,8 @@
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AMt-g8-RdW"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CKz-Ig-pRO"/>
                             <constraint firstItem="BTN-mr-580" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="NhB-x2-UHa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dm7-ud-DZp" secondAttribute="bottom" constant="20" id="QDj-y5-yzo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uX2-Kb-PSv" secondAttribute="trailing" constant="42" id="aL5-cv-YkZ"/>
                             <constraint firstItem="BTN-mr-580" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="hCu-oR-W4Q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dm7-ud-DZp" secondAttribute="trailing" constant="125" id="pVJ-dO-ml5"/>
-                            <constraint firstItem="Dm7-ud-DZp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="125" id="qVf-pg-yLF"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="yxv-En-BcF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -150,7 +141,6 @@
                     <navigationItem key="navigationItem" id="Oip-9c-dz4"/>
                     <connections>
                         <outlet property="collectionView" destination="nE7-fs-Zmv" id="B1l-e7-qoh"/>
-                        <outlet property="searchByTagField" destination="Dm7-ud-DZp" id="Wiq-do-HQ6"/>
                         <segue destination="AwN-UZ-baC" kind="show" identifier="FullScreenPhoto" id="dS0-aq-brL"/>
                     </connections>
                 </viewController>

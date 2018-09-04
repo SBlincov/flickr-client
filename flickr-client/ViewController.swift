@@ -10,13 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
-    var counter = 0
-    
     var isPushedSortByName = false
     var isPushedSortByDate = false
     
     static var pushedPhoto: UIImageView? = nil
-    @IBOutlet weak var searchByTagField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func pushedSortByNameButton(_ sender: Any) {
@@ -52,23 +49,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView?.reloadData()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        if textField.text != nil {
-            publicFeedDictionary = []
-            getPublicFeed(tag: textField.text!)
-            while publicFeedDictionary == [] {
-                continue
-            }
-            fetchPhotos(publicFeedDictionary)
-            fetchTitles(publicFeedDictionary)
-            fetchTags(publicFeedDictionary)
-            fetchDate(publicFeedDictionary)
-            collectionView?.reloadData()
-            return true
-        }
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        self.view.endEditing(true)
+//        if textField.text != nil {
+//            publicFeedDictionary = []
+//            getPublicFeed(tag: textField.text!)
+//            while publicFeedDictionary == [] {
+//                continue
+//            }
+//            fetchPhotos(publicFeedDictionary)
+//            fetchTitles(publicFeedDictionary)
+//            fetchTags(publicFeedDictionary)
+//            fetchDate(publicFeedDictionary)
+//            collectionView?.reloadData()
+//            return true
+//        }
+//        return true
+//    }
     
     var publicFeedDictionary: [NSDictionary] = []
     var urlOfFetchedPhoto = Array(repeating: "", count: 20)
@@ -78,8 +75,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchByTagField.delegate = self
-        
         
         getPublicFeed()
         while publicFeedDictionary == [] {
@@ -351,19 +346,4 @@ extension ViewController {
         }
         return ""
     }
-    
-    func textField(textField: UITextField,
-                   shouldChangeCharactersInRange range: NSRange,
-                   replacementString string: String)
-        -> Bool {
-        if string.characters.count == 0 {
-            return true
-        }
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
 }
