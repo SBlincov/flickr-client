@@ -22,6 +22,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     static var pushedPhoto: UIImageView? = nil
     @IBOutlet weak var searchByTagField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBAction func searchByTagButton(_ sender: Any) {
+        publicFeedDictionary = []
+        getPublicFeed(tag: "lol")
+        while publicFeedDictionary == [] {
+            continue
+        }
+        //print(publicFeedDictionary)
+        fetchPhotos(publicFeedDictionary)
+        fetchTitles(publicFeedDictionary)
+        fetchTags(publicFeedDictionary)
+        fetchDate(publicFeedDictionary)
+        print(publicFeedDictionary)
+        collectionView?.reloadData()
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -169,7 +185,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func getPublicFeed(tag: String) {
-        let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&\(tag)")!
+        let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=\(tag)")!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"

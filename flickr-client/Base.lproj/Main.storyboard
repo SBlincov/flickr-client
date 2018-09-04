@@ -123,6 +123,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-1u-PuZ">
+                                <rect key="frame" x="188" y="510" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="searchByTagButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9u3-4w-IXW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -142,6 +150,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Oip-9c-dz4"/>
                     <connections>
+                        <outlet property="collectionView" destination="nE7-fs-Zmv" id="B1l-e7-qoh"/>
                         <outlet property="searchByTagField" destination="Dm7-ud-DZp" id="Wiq-do-HQ6"/>
                         <segue destination="AwN-UZ-baC" kind="show" identifier="FullScreenPhoto" id="dS0-aq-brL"/>
                     </connections>
