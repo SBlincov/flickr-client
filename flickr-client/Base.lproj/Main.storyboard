@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nE7-fs-Zmv">
-                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="154" width="375" height="513"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dGY-Re-eqs">
                                     <size key="itemSize" width="373" height="180"/>
@@ -103,33 +103,38 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTN-mr-580">
-                                <rect key="frame" x="42" y="76" width="92" height="30"/>
+                                <rect key="frame" x="42" y="114" width="103" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Pnp-tL-GFH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sort by name"/>
                                 <connections>
                                     <action selector="pushedSortByNameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Elh-Qm-S8z"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uX2-Kb-PSv">
-                                <rect key="frame" x="248" y="76" width="85" height="30"/>
+                                <rect key="frame" x="239" y="114" width="94" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="xvD-Gw-mzB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Sort by date"/>
                                 <connections>
                                     <action selector="pushedSortByDateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chf-nN-Exp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7c-1u-PuZ">
-                                <rect key="frame" x="188" y="510" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="searchByTagButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9u3-4w-IXW"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XME-78-Ew9">
-                                <rect key="frame" x="113" y="597" width="149" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="50" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search images by tag" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XME-78-Ew9">
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gin-36-nbs"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="hideME:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="cna-tl-NPz"/>
+                                </connections>
                             </textField>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C9E-Hz-hv2">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
@@ -148,21 +153,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XME-78-Ew9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6gr-Z6-5Bu"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8F8-4G-1NL"/>
-                            <constraint firstItem="uX2-Kb-PSv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="9ig-lC-fCS"/>
+                            <constraint firstItem="uX2-Kb-PSv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="9ig-lC-fCS"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AMt-g8-RdW"/>
                             <constraint firstItem="nE7-fs-Zmv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CKz-Ig-pRO"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="CaX-75-ybm"/>
-                            <constraint firstItem="BTN-mr-580" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="NhB-x2-UHa"/>
+                            <constraint firstItem="BTN-mr-580" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="NhB-x2-UHa"/>
+                            <constraint firstItem="XME-78-Ew9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qa4-yW-gs1"/>
                             <constraint firstItem="xS2-sB-xMN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Rar-xI-wKV"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Yi4-xe-VHU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uX2-Kb-PSv" secondAttribute="trailing" constant="42" id="aL5-cv-YkZ"/>
                             <constraint firstItem="xS2-sB-xMN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aLT-OM-jL3"/>
                             <constraint firstItem="xS2-sB-xMN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bUt-NQ-erf"/>
+                            <constraint firstItem="XME-78-Ew9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gEX-Ps-adG"/>
                             <constraint firstItem="BTN-mr-580" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="hCu-oR-W4Q"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kYc-e6-xGN"/>
                             <constraint firstItem="C9E-Hz-hv2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="pz5-6Q-GPx"/>
-                            <constraint firstItem="nE7-fs-Zmv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="yxv-En-BcF"/>
+                            <constraint firstItem="nE7-fs-Zmv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="yxv-En-BcF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

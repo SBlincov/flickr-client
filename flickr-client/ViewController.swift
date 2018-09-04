@@ -102,20 +102,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         textField.keyboardType = UIKeyboardType.default
     }
     
+    
     @IBAction func userTappedBackground(sender: AnyObject) {
         view.endEditing(true)
     }
     
-    func textField(textField: UITextField,
-                   shouldChangeCharactersInRange range: NSRange,
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
                    replacementString string: String)
         -> Bool {
  
         if string.characters.count == 0 {
             return true
         }
- 
-        let currentText = textField.text ?? ""
         
         return true
         
@@ -137,6 +136,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return true
         }
         return true
+    }
+    
+    @IBAction func hideKeyboardWhenEditingEnd(_ sender: Any) {
+        view.endEditing(true)
     }
     
 // END TEXTFIELD
