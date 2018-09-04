@@ -110,29 +110,33 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                    shouldChangeCharactersInRange range: NSRange,
                    replacementString string: String)
         -> Bool {
-        // We ignore any change that doesn't add characters to the text field.
-        // These changes are things like character deletions and cuts, as well
-        // as moving the insertion point.
-        //
-        // We still return true to allow the change to take place.
+ 
         if string.characters.count == 0 {
             return true
         }
-        
-        // Check to see if the text field's contents still fit the constraints
-        // with the new content added to it.
-        // If the contents still fit the constraints, allow the change
-        // by returning true; otherwise disallow the change by returning false.
+ 
         let currentText = textField.text ?? ""
-        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
         
         return true
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true;
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        if textField.text != nil {
+            publicFeedDictionary = []
+            getPublicFeed(tag: textField.text!)
+            while publicFeedDictionary == [] {
+                continue
+            }
+            fetchPhotos(publicFeedDictionary)
+            fetchTitles(publicFeedDictionary)
+            fetchTags(publicFeedDictionary)
+            fetchDate(publicFeedDictionary)
+            collectionView?.reloadData()
+            return true
+        }
+        return true
     }
     
 // END TEXTFIELD
