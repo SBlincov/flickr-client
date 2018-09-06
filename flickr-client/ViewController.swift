@@ -72,7 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.view.endEditing(true)
         if textField.text != nil {
             publicFeedDictionary = []
-            getPublicFeed(tag: textField.text!)
+            getPublicFeed(textField.text!)
             while publicFeedDictionary == [] {
                 continue
             }
@@ -213,8 +213,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         task.resume()
     }
     
-    func getPublicFeed(tag: String) {
+    func getPublicFeed(_ searchedTags: String) {
+        var tag = searchedTags
+        tag = tag.replaceWhitespaces()
         let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=\(tag)")!
+        print(url)
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
@@ -365,5 +368,11 @@ extension ViewController {
             return String(describing: nonNil)
         }
         return ""
+    }
+}
+
+extension String {
+    func replaceWhitespaces() -> String {
+        return components(separatedBy: .whitespaces).joined(separator: "%20")
     }
 }
