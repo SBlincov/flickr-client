@@ -26,6 +26,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var isPushedSortByName = false
     var isPushedSortByDate = false
     
+    func url(scheme: String, host: String, path: String) -> NSURL? {
+        let components = NSURLComponents()
+        components.scheme = scheme
+        components.host = host.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlHostAllowed)
+        components.path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlPathAllowed)
+        return components.url! as NSURL
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTextField()
@@ -216,9 +224,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func getPublicFeed(_ searchedTags: String) {
         var tag = searchedTags
         tag = tag.replaceWhitespaces()
+        tag = tag.convertToPercentEncoding(&tag)
         let url = URL(string: "https://api.flickr.com/services/feeds/photos_public.gne?format=json&nojsoncallback=1&tags=\(tag)")!
-        print(url)
-        var request = URLRequest(url: url)
+        
+        var request = URLRequest(url: url as URL)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         
@@ -374,5 +383,8 @@ extension ViewController {
 extension String {
     func replaceWhitespaces() -> String {
         return components(separatedBy: .whitespaces).joined(separator: "%20")
+    }
+    func convertToPercentEncoding(_ string: inout String) -> String {
+        return string.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlPathAllowed)!
     }
 }
