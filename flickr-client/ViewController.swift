@@ -26,14 +26,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var isPushedSortByName = false
     var isPushedSortByDate = false
     
-    func url(scheme: String, host: String, path: String) -> NSURL? {
-        let components = NSURLComponents()
-        components.scheme = scheme
-        components.host = host.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlHostAllowed)
-        components.path = path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlPathAllowed)
-        return components.url! as NSURL
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeTextField()
